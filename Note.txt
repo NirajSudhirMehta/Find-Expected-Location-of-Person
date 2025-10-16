@@ -1,1 +1,19 @@
 note
+
+
+input :
+    1. time table (csv)
+    2. capsul details (csv) 
+    3. map (png)
+
+query input :
+    student :
+        1. student name 
+        2. roll no
+    staff :
+        1. staff name
+        2. staff id
+
+output :
+    1. text result
+    2. graphical result
