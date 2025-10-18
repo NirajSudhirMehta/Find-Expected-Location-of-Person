@@ -1,5 +1,4 @@
-note
-
+note:
     find the person in previously maped primises
     with help of time table and plan of primises
 
