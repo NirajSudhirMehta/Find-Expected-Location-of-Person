@@ -108,6 +108,7 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Find-Expected-Location-of-Person", None))
         self.groupBox.setTitle(QCoreApplication.translate("Form", u"Search Student", None))
         self.label.setText(QCoreApplication.translate("Form", u"Search Name/Roll Number : ", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("Form", u"multiple string to find with space", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"PushButton", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Result : ", None))
         self.result_text.setText(QCoreApplication.translate("Form", u"result as text", None))
