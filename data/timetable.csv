@@ -1,0 +1,34 @@
+branch,year,div,batch,day,time_from,time_to,subject,bldg,floor,roomno,professor,description
+Mech,BE,A,Z,Monday,9:00,10:30,SOM,MainBldg,2,204,Mr. Patil,Theory Class
+Mech,BE,A,Z,Monday,10:30,12:00,Prod,MainBldg,2,204,Mr. Patil,Theory Class
+Mech,BE,A,Z,Monday,12:00,13:30,FM2,MainBldg,2,204,Mr. Patil,Theory Class
+Mech,BE,A,A,Monday,15:00,17:30,AT2,MainBldg,1,109,Mr. Pawar,Practical
+Mech,BE,A,B,Monday,15:00,17:30,FM2,MainBldg,1,107,Ms. Shelar,Practical
+Mech,BE,A,C,Monday,15:00,17:30,DWG,MainBldg,1,203,Mrs. Chhajed,Practical
+Mech,BE,A,A,Tuesday,9:00,10:30,SOM,MainBldg,2,107,Ms. Shelar,Practical
+Mech,BE,A,B,Tuesday,9:00,10:30,Prod,MainBldg,2,107,Ms. Shelar,Practical
+Mech,BE,A,C,Tuesday,9:00,10:30,FM2,MainBldg,2,107,Ms. Shelar,Practical
+Mech,BE,A,Z,Tuesday,10:30,12:00,AT2,MainBldg,1,109,Mr. Pawar,Theory Class
+Mech,BE,A,Z,Tuesday,12:00,13:30,FM2,MainBldg,1,109,Mr. Pawar,Theory Class
+Mech,BE,A,Z,Tuesday,15:00,17:30,DWG,MainBldg,1,203,Mrs. Chhajed,Theory Class
+Mech,BE,A,Z,Wednesday,9:00,10:30,SOM,MainBldg,2,204,Mr. Patil,Theory Class
+Mech,BE,A,Z,Wednesday,10:30,12:00,Prod,MainBldg,2,204,Mr. Patil,Theory Class
+Mech,BE,A,A,Wednesday,15:00,17:30,AT2,MainBldg,1,109,Mr. Pawar,Practical
+Mech,BE,A,B,Wednesday,15:00,17:30,FM2,MainBldg,1,107,Ms. Shelar,Practical
+Mech,BE,A,C,Wednesday,15:00,17:30,DWG,MainBldg,1,203,Mrs. Chhajed,Practical
+Comp,SE,B,Z,Monday,9:00,10:30,DM,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,Z,Monday,10:30,12:00,DECO,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,Z,Monday,12:00,13:30,DSAL,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,A,Monday,15:00,17:30,DSAL,MainBldg,1,109,Mr. Pawar,Practical
+Comp,SE,B,B,Monday,15:00,17:30,DECO,MainBldg,1,107,Ms. Shelar,Practical
+Comp,SE,B,C,Monday,15:00,17:30,DAVL,MainBldg,1,203,Mrs. Chhajed,Practical
+Comp,SE,B,Z,Tuesday,9:00,10:30,PSA,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,Z,Tuesday,10:30,12:00,DM,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,A,Tuesday,15:00,17:30,DSAL,MainBldg,1,109,Mr. Pawar,Practical
+Comp,SE,B,B,Tuesday,15:00,17:30,DAVL,MainBldg,1,107,Ms. Shelar,Practical
+Comp,SE,B,C,Tuesday,15:00,17:30,DECO,MainBldg,1,203,Mrs. Chhajed,Practical
+Comp,SE,B,Z,Wednesday,9:00,10:30,PSA,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,Z,Wednesday,10:30,12:00,DM,MainBldg,2,204,Mr. Patil,Theory Class
+Comp,SE,B,A,Wednesday,15:00,17:30,DSAL,MainBldg,1,109,Mr. Pawar,Practical
+Comp,SE,B,B,Wednesday,15:00,17:30,DAVL,MainBldg,1,107,Ms. Shelar,Practical
+Comp,SE,B,C,Wednesday,15:00,17:30,DECO,MainBldg,1,203,Mrs. Chhajed,Practical
