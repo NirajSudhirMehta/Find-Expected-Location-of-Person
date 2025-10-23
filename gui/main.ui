@@ -23,11 +23,32 @@
       </size>
      </property>
      <property name="title">
-      <string>Search Student</string>
+      <string>Search</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="radioButton_3">
+            <property name="text">
+             <string>Student</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton">
+            <property name="text">
+             <string>Staff</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
@@ -39,9 +60,9 @@
          <widget class="QLineEdit" name="lineEdit"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButton_Search">
           <property name="text">
-           <string>PushButton</string>
+           <string>Search</string>
           </property>
          </widget>
         </item>
