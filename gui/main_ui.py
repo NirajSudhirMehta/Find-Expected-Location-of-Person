@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGraphicsView, QGroupBox, QHBoxLayout,
     QLabel, QLineEdit, QListView, QPushButton,
-    QSizePolicy, QVBoxLayout, QWidget)
+    QRadioButton, QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -33,30 +33,46 @@ class Ui_Form(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(-1, -1, 10, -1)
+        self.radioButton_student = QRadioButton(self.groupBox)
+        self.radioButton_student.setObjectName(u"radioButton_student")
+
+        self.verticalLayout_2.addWidget(self.radioButton_student)
+
+        self.radioButton_staff = QRadioButton(self.groupBox)
+        self.radioButton_staff.setObjectName(u"radioButton_staff")
+
+        self.verticalLayout_2.addWidget(self.radioButton_staff)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_2)
+
         self.label = QLabel(self.groupBox)
         self.label.setObjectName(u"label")
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.lineEdit = QLineEdit(self.groupBox)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit_search = QLineEdit(self.groupBox)
+        self.lineEdit_search.setObjectName(u"lineEdit_search")
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.lineEdit_search)
 
-        self.pushButton = QPushButton(self.groupBox)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton_search = QPushButton(self.groupBox)
+        self.pushButton_search.setObjectName(u"pushButton_search")
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.pushButton_search)
 
 
         self.verticalLayout_4.addLayout(self.horizontalLayout)
 
         self.verticalLayout_5 = QVBoxLayout()
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.listView = QListView(self.groupBox)
-        self.listView.setObjectName(u"listView")
+        self.listView_search_result = QListView(self.groupBox)
+        self.listView_search_result.setObjectName(u"listView_search_result")
 
-        self.verticalLayout_5.addWidget(self.listView)
+        self.verticalLayout_5.addWidget(self.listView_search_result)
 
 
         self.verticalLayout_4.addLayout(self.verticalLayout_5)
@@ -106,9 +122,11 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Find-Expected-Location-of-Person", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Form", u"Search Student", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Form", u"Search", None))
+        self.radioButton_student.setText(QCoreApplication.translate("Form", u"Student", None))
+        self.radioButton_staff.setText(QCoreApplication.translate("Form", u"Staff", None))
         self.label.setText(QCoreApplication.translate("Form", u"Search Name/Roll Number : ", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"PushButton", None))
+        self.pushButton_search.setText(QCoreApplication.translate("Form", u"Search", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Result : ", None))
         self.result_text.setText(QCoreApplication.translate("Form", u"result as text", None))
     # retranslateUi
