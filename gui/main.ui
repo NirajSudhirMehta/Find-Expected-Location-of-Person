@@ -34,14 +34,14 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QRadioButton" name="radioButton_3">
+           <widget class="QRadioButton" name="radioButton_student">
             <property name="text">
              <string>Student</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton">
+           <widget class="QRadioButton" name="radioButton_staff">
             <property name="text">
              <string>Staff</string>
             </property>
@@ -57,10 +57,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="lineEdit_search"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_Search">
+         <widget class="QPushButton" name="pushButton_search">
           <property name="text">
            <string>Search</string>
           </property>
@@ -71,7 +71,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QListView" name="listView"/>
+         <widget class="QListView" name="listView_search_result"/>
         </item>
        </layout>
       </item>

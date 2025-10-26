@@ -13,7 +13,6 @@ from PySide6.QtUiTools import QUiLoader
 
 import student
 
-
 UI_FILE = os.path.dirname(__file__) + r"/gui/main.ui"
 QSS_FILE = os.path.join(os.path.dirname(__file__), r"gui/theme.qss")
 
