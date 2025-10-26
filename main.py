@@ -12,14 +12,17 @@ from PySide6.QtUiTools import QUiLoader
 #     QRadioButton, QSizePolicy, QVBoxLayout, QWidget)
 
 import student
+import staff
 
 UI_FILE = os.path.dirname(__file__) + r"/gui/main.ui"
 QSS_FILE = os.path.join(os.path.dirname(__file__), r"gui/theme.qss")
 
 
 class MainWindow(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, student_reg, staff_reg, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.student_reg = student_reg
+        self.staff_reg = staff_reg
 
         # Load .ui
         loader = QUiLoader()
@@ -74,19 +77,19 @@ class MainWindow(QtWidgets.QWidget):
 
     @Slot()
     def on_pushButton_search_clicked(self):
-
-        print('clicked')
+        # print('clicked')
 
         try:
-            search_list = [x for x in self.lineEdit_search.text().split(" ") if x]
+            search_str = self.lineEdit_search.text()
         except:
             print('error in search string')
 
-        if not (len(search_list)):
+        if len(search_str)<5:
             QMessageBox.warning(self, "Warning", "No search text.")
             return
 
-        print(search_list)
+        print(self.student_reg.search('123'))
+        print(self.staff_reg.search('125'))
 
 
     #     try:
@@ -110,13 +113,14 @@ class MainWindow(QtWidgets.QWidget):
     # -------------------------------------------------
 
 
+
 def main():
 
     student_reg = student.Students()
-    print(student_reg.search('meht 12'))
+    staff_reg = staff.Staffs()
 
     app = QApplication(sys.argv)
-    w = MainWindow()
+    w = MainWindow(student_reg, staff_reg)
     w.setWindowTitle("Find-Expected-Location-of-Person")
     w.resize(700, 800)
     w.show()
