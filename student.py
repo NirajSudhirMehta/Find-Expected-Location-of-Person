@@ -8,14 +8,33 @@ class Students():
         """Initialize instance attributes."""
         self.__student_csv_file = os.path.join(os.path.dirname(__file__), r"data/students.csv")
         self.__student_df = pd.DataFrame()
-        print(self.__student_csv_file)
         self.__student_df = pd.read_csv(self.__student_csv_file)
-        print(self.__student_df)
 
     # Instance method
     def method(self, arg):
         """Do something with the instance."""
         return f"class method"
+
+    def search(self, search_str:str):
+        """find in student df"""
+        # print(self.__student_df)
+        search_list = [x for x in search_str.split(" ") if x]
+        # print(search_list)
+
+        # create a single string per row from all columns
+        row_text = self.__student_df.astype(str).agg(" ".join, axis=1).str.lower()
+
+        # require all items present in the same row
+        mask = pd.Series(True, index=self.__student_df.index)
+        for item in search_list:
+            mask &= row_text.str.contains(item.lower(), na=False)
+
+        result = self.__student_df[mask]
+
+        # print(self.__student_df)
+        # print(search_list)
+        # print(result)
+        return result
 
     # Class method: receives the class (cls)
     @classmethod
@@ -40,10 +59,13 @@ class Students():
         self._private = v
 
 
-
 def main():
 
     student_master = Students()
+    # student_master.search('mehta 123')
+    print(student_master.search('mehta 12'))
+
 
 if __name__ == "__main__":
     main()
+

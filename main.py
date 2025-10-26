@@ -11,7 +11,7 @@ from PySide6.QtUiTools import QUiLoader
 #     QLabel, QLineEdit, QListView, QPushButton,
 #     QRadioButton, QSizePolicy, QVBoxLayout, QWidget)
 
-
+import student
 
 
 UI_FILE = os.path.dirname(__file__) + r"/gui/main.ui"
@@ -112,6 +112,9 @@ class MainWindow(QtWidgets.QWidget):
 
 
 def main():
+
+    student_reg = student.Students()
+    print(student_reg.search('meht 12'))
 
     app = QApplication(sys.argv)
     w = MainWindow()
