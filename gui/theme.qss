@@ -1,0 +1,10 @@
+QLabel {
+    border: 0px solid #c2c2c2;
+    color: #272727;
+}
+QLabel#result_text {
+    font-size: 9pt;
+    color: #0e78f1;
+    border: 0px solid #0e78f1;
+    padding: 0 6px 1px 6px;
+}

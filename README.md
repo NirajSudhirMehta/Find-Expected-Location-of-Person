@@ -1,30 +1,39 @@
 # Find-Expected-Location-of-Person
-Find-Expected-Location-of-Person
 
-    find the person in previously maped primises
-    with help of time table and plan of primises
+> [!NOTE]
+> ✨find the person in previously maped primises
+> with help of time table and plan of primises
+>
 
-```
-input :
-    1. time table (csv)
-    2. capsul details (csv) 
-    3. primises (png)
 
-query input :
-    student :
-        1. student name 
-        2. roll no
-    staff :
-        1. staff name
-        2. staff id
+### Input :
+* time table (csv)
 
-output :
-    1. text result
-    2. graphical result
+    rollno, name, class, branch, div, group
 
-```
+* capsul details (csv) 
+    
+    rollno, name, class, branch, div, group
+
+* primises (png)
+
+
+### Query Input :
+* student :
+    * student name 
+    * roll no
+* staff :
+    * staff name
+    * staff id
+
+
+### Output :
+* text result
+* graphical result
+
+
 <br>
 
-- GUI :
+### GUI :
 
 ![GUI](gui/gui.png)
