@@ -54,15 +54,6 @@ class MainWindow(QtWidgets.QWidget):
 
         self.listView_search_result: QtWidgets.QListView = self.ui.findChild(QtWidgets.QListView, "listView_search_result")
 
-        # self.lineEdit_rm_right: QtWidgets.QLineEdit = self.ui.findChild(QtWidgets.QLineEdit, "lineEdit_rm_right")
-        # self.lineEdit_rm_right.setValidator(QIntValidator(1, 50, self))
-        # self.lineEdit_rm_right.setText("8")
-
-        # self.dpi_combo: QtWidgets.QComboBox = self.ui.findChild(QtWidgets.QComboBox, "dpi_combo")
-        # self.dpi_combo.setEditable(True)
-        # self.dpi_combo.addItems(["72", "96", "100", "150", "200", "300"])
-        # self.dpi_combo.setInsertPolicy(QtWidgets.QComboBox.NoInsert)
-        # self.dpi_combo.lineEdit().setValidator(QtGui.QIntValidator(72, 1200, self))
         
         self.apply_qss(QSS_FILE)
 
@@ -122,7 +113,7 @@ def main():
     app = QApplication(sys.argv)
     w = MainWindow(student_reg, staff_reg)
     w.setWindowTitle("Find-Expected-Location-of-Person")
-    w.resize(700, 800)
+    w.resize(700, 600)
     w.show()
     sys.exit(app.exec())
 
