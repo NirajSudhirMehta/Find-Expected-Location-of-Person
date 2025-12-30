@@ -1,11 +1,13 @@
 import os
 import sys
+import pandas as pd
 
 from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtCore import QDir, Slot
 from PySide6.QtGui import QIntValidator, QDoubleValidator
-from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog
+from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog, QTableView
 from PySide6.QtUiTools import QUiLoader 
+from PySide6.QtCore import Qt, QDateTime, QAbstractTableModel, QModelIndex
 
 # from PySide6.QtWidgets import (QApplication, QGraphicsView, QGroupBox, QHBoxLayout,
 #     QLabel, QLineEdit, QListView, QPushButton,
@@ -17,6 +19,55 @@ import staff
 UI_FILE = os.path.dirname(__file__) + r"/gui/main.ui"
 QSS_FILE = os.path.join(os.path.dirname(__file__), r"gui/theme.qss")
 
+class DataFrameModel(QAbstractTableModel):
+    def __init__(self, df: pd.DataFrame):
+        super().__init__()
+        self._df = df.copy()
+
+    def rowCount(self, parent=None):
+        return len(self._df)
+
+    def columnCount(self, parent=None):
+        return len(self._df.columns)
+
+    def data(self, index, role=Qt.DisplayRole):
+        if not index.isValid() or role not in (Qt.DisplayRole, Qt.EditRole):
+            return None
+        value = self._df.iat[index.row(), index.column()]
+        return str(value)
+
+    def headerData(self, section, orientation, role=Qt.DisplayRole):
+        if role != Qt.DisplayRole:
+            return None
+        if orientation == Qt.Horizontal:
+            return str(self._df.columns[section])
+        else:
+            return str(self._df.index[section])
+
+    def flags(self, index):
+        if not index.isValid():
+            return Qt.NoItemFlags
+        return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
+
+    def setData(self, index, value, role=Qt.EditRole):
+        if role != Qt.EditRole or not index.isValid():
+            return False
+        row, col = index.row(), index.column()
+        try:
+            # try to preserve dtype
+            dtype = self._df.dtypes.iloc[col]
+            if pd.api.types.is_numeric_dtype(dtype):
+                converted = pd.to_numeric(value)
+            else:
+                converted = value
+            self._df.iat[row, col] = converted
+        except Exception:
+            self._df.iat[row, col] = value
+        self.dataChanged.emit(index, index, [Qt.DisplayRole, Qt.EditRole])
+        return True
+
+    def get_dataframe(self):
+        return self._df.copy()
 
 class MainWindow(QtWidgets.QWidget):
     def __init__(self, student_reg, staff_reg, *args, **kwargs):
@@ -46,24 +97,26 @@ class MainWindow(QtWidgets.QWidget):
 
         self.radioButton_staff: QtWidgets.QRadioButton = self.ui.findChild(QtWidgets.QRadioButton, "radioButton_staff")
 
+        self.dateTimeEdit: QtWidgets.QDateTimeEdit = self.ui.findChild(QtWidgets.QDateTimeEdit,"dateTimeEdit")
+        now = QDateTime.currentDateTime()
+        self.dateTimeEdit.setDateTime(now)
+
+        self.pushButton_now: QtWidgets.QPushButton = self.ui.findChild(QtWidgets.QPushButton, "pushButton_now")
+        self.pushButton_now.clicked.connect(self.on_pushButton_now_clicked)
+
         self.lineEdit_search: QtWidgets.QLineEdit = self.ui.findChild(QtWidgets.QLineEdit, "lineEdit_search")
 
         self.pushButton_search: QtWidgets.QPushButton = self.ui.findChild(QtWidgets.QPushButton, "pushButton_search")
         self.pushButton_search.clicked.connect(self.on_pushButton_search_clicked)
         # self.pushButton_search.setEnabled(False)
 
-        self.listView_search_result: QtWidgets.QListView = self.ui.findChild(QtWidgets.QListView, "listView_search_result")
+        self.tableView_search_result: QtWidgets.QTableView = self.ui.findChild(QtWidgets.QTableView, "tableView_search_result")
 
-        # self.lineEdit_rm_right: QtWidgets.QLineEdit = self.ui.findChild(QtWidgets.QLineEdit, "lineEdit_rm_right")
-        # self.lineEdit_rm_right.setValidator(QIntValidator(1, 50, self))
-        # self.lineEdit_rm_right.setText("8")
+        self.final_result_text: QtWidgets.QLabel = self.ui.findChild(QtWidgets.QLabel, "final_result_text")
 
-        # self.dpi_combo: QtWidgets.QComboBox = self.ui.findChild(QtWidgets.QComboBox, "dpi_combo")
-        # self.dpi_combo.setEditable(True)
-        # self.dpi_combo.addItems(["72", "96", "100", "150", "200", "300"])
-        # self.dpi_combo.setInsertPolicy(QtWidgets.QComboBox.NoInsert)
-        # self.dpi_combo.lineEdit().setValidator(QtGui.QIntValidator(72, 1200, self))
-        
+        self.tableView_search_result.clicked.connect(self.on_tableView_search_result_clicked)
+
+
         self.apply_qss(QSS_FILE)
 
 
@@ -83,35 +136,48 @@ class MainWindow(QtWidgets.QWidget):
             search_str = self.lineEdit_search.text()
         except:
             print('error in search string')
-
-        if len(search_str)<5:
-            QMessageBox.warning(self, "Warning", "No search text.")
+            search_str = ''
             return
 
-        print(self.student_reg.search('123'))
-        print(self.staff_reg.search('125'))
+        if len(search_str)<3:
+            QMessageBox.warning(self, "Warning", "Search text length \nshoud be greater then 3 !")
+            return
+
+        if self.radioButton_student.isChecked():
+            self.df_search_result = self.student_reg.search(search_str)
+
+        if self.radioButton_staff.isChecked():
+            self.df_search_result = self.staff_reg.search(search_str)
+
+        # print(df_search_result)
+
+        self.tableView_model = DataFrameModel(self.df_search_result)
+        self.tableView_search_result.setModel(self.tableView_model)
+        self.tableView_search_result.resizeColumnsToContents()
 
 
-    #     try:
-    #         out_path = self.process_psd(self.label_file_to_process.text() , 
-    #                                     dpi = dpi,
-    #                                     rm_left_mm = rm_left,
-    #                                     rm_right_mm = rm_right,
-    #                                     rm_top_mm = rm_top, 
-    #                                     rm_bottom_mm = rm_bottom,
-    #                                     scale = scale, 
-    #                                     gutter = gutter,
-    #                                     g_at = g_at)
-            
-    #     except Exception as e:
-    #         QMessageBox.critical(self, "Error", f"Processing failed: {e}")
-    #         return
+    @Slot()
+    def on_pushButton_now_clicked(self):
+        now = QDateTime.currentDateTime()
+        self.dateTimeEdit.setDateTime(now)
 
-    #     self.load_output_pdf(str(out_path))
-    #     self.tabWidget.setCurrentIndex(1)
 
+    def on_tableView_search_result_clicked(self, index: QModelIndex):
+        if not index.isValid():
+            val = None
+        else:
+            val = self.tableView_model.data(index, Qt.DisplayRole)
+
+        colname = self.tableView_model.headerData(index.column(), Qt.Horizontal)
+
+        rowidx = index.row()
+
+        print(f"Clicked cell ({rowidx}, {colname}) = {val}")
+
+        print(self.df_search_result.iloc[rowidx])
+        s = ", ".join(self.df_search_result.iloc[rowidx].astype(str).tolist())
+        self.final_result_text.setText(s)
     # -------------------------------------------------
-
 
 
 def main():
